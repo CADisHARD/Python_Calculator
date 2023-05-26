@@ -23,23 +23,27 @@ entry = Entry(window, width=25, borderwidth=5)
 entry.grid(row=0, column=0, columnspan=4, padx=10, pady=10)
 
 # Create the number buttons
-for i in range(10):
+for i in range(1,10):
     button = Button(window, text=str(i), padx=20, pady=10, command=lambda i=i: button_click(i))
-    button.grid(row=(i+3)//3, column=(i-1)%3, padx=5, pady=5)
+    button.grid(row=(i+2)//3, column=(i-1)%3, padx=5, pady=5)
+
+# Create the number button for 0
+button = Button(window, text=str(0), padx=20, pady=10, command=button_click(0))
+button.grid(row=4, column=1, padx=5, pady=5)
 
 # Create the operator buttons
 operators = ['+', '-', '*', '/']
 for i, operator in enumerate(operators):
     button = Button(window, text=operator, padx=20, pady=10, command=lambda operator=operator: button_click(operator))
-    button.grid(row=i+3, column=3, padx=5, pady=5)
+    button.grid(row=i+1, column=3, padx=5, pady=5)
 
 # Create the clear button
 button_clear = Button(window, text="C", padx=20, pady=10, command=button_clear)
-button_clear.grid(row=2, column=0, padx=5, pady=5)
+button_clear.grid(row=4, column=0, padx=5, pady=5)
 
 # Create the equal button
 button_equal = Button(window, text="=", padx=20, pady=10, command=button_equal)
-button_equal.grid(row=2, column=1, columnspan=2, padx=5, pady=5)
+button_equal.grid(row=4, column=2, padx=5, pady=5)
 
 # Run the Tkinter event loop
 window.mainloop()
