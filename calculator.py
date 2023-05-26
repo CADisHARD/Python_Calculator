@@ -10,6 +10,10 @@ def button_clear():
 
 def button_equal():
     expression = entry.get()
+    
+    while (expression.startswith("0")):
+        expression = expression[1:]
+    
     result = eval(expression)
     entry.delete(0, END)
     entry.insert(END, result)
@@ -23,13 +27,12 @@ entry = Entry(window, width=25, borderwidth=5)
 entry.grid(row=0, column=0, columnspan=4, padx=10, pady=10)
 
 # Create the number buttons
-for i in range(1,10):
+for i in range(0,10):
     button = Button(window, text=str(i), padx=20, pady=10, command=lambda i=i: button_click(i))
-    button.grid(row=(i+2)//3, column=(i-1)%3, padx=5, pady=5)
-
-# Create the number button for 0
-button = Button(window, text=str(0), padx=20, pady=10, command=button_click(0))
-button.grid(row=4, column=1, padx=5, pady=5)
+    if (i==0):
+        button.grid(row=4, column=1, padx=5, pady=5)
+    else:
+        button.grid(row=(i+2)//3, column=(i-1)%3, padx=5, pady=5)
 
 # Create the operator buttons
 operators = ['+', '-', '*', '/']
